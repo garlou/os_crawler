@@ -16,9 +16,9 @@ define('TELEGRAM_PATH', '/home/kae/Documents/workspace/tg/');
 define('TELEGRAM_PEER', 'Surf');
 
 if( $argv[1] == 'prod')
-	define('CAPTURES_PATH', '/home/kae/Documents/workspace/os_crawler/captures');
+	define('CAPTURES_PATH', '/home/kae/Documents/workspace/os_crawler/captures/');
 else
-	define('CAPTURES_PATH', '/Users/kae/Documents/workspace/php/captures');
+	define('CAPTURES_PATH', '/Users/kae/Documents/workspace/php/captures/');
 
 $first=true;
 while(!file_exists('/tmp/tg.sck')) {
@@ -49,7 +49,7 @@ foreach (new DirectoryIterator(CAPTURES_PATH) as $fileInfo) {
 	    $city = str_replace("-", " ", $tokens[1]);
 	    echo "processing: ".$city."\r\n";
 			$telegram->msg(TELEGRAM_PEER, $city.":");
-			echo "sending photo: ".CAPTURES_PATH.'/'.$filename."\r\n";
+			echo "sending photo: ".CAPTURES_PATH.$filename."\r\n";
 			$telegram->send_photo(TELEGRAM_PEER, CAPTURES_PATH.$filename);	
     }
 }

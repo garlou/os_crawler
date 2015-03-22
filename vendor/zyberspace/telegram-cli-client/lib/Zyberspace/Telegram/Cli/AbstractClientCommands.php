@@ -75,7 +75,6 @@ abstract class AbstractClientCommands
     {
         $peer = $this->escapePeer($peer);
 
-        echo "-> ".$photo_path."\n";
         if(file_exists($photo_path))
             {
                 echo "sends foto....\r\n";
