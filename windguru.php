@@ -14,8 +14,11 @@ require('vendor/autoload.php');
 
 define('TELEGRAM_PATH', '/home/kae/Documents/workspace/tg/');
 define('TELEGRAM_PEER', 'Surf');
-//define('CAPTURES_PATH', '/home/kae/Documents/workspace/os_crawler/captures');
-define('CAPTURES_PATH', '/Users/kae/Documents/workspace/php/captures');
+
+if( $argv[1] == 'prod')
+	define('CAPTURES_PATH', '/home/kae/Documents/workspace/os_crawler/captures');
+else
+	define('CAPTURES_PATH', '/Users/kae/Documents/workspace/php/captures');
 
 $first=true;
 while(!file_exists('/tmp/tg.sck')) {
