@@ -34,7 +34,7 @@ while(!file_exists('/tmp/tg.sck')) {
 	break;	
 }
 
-//$telegram = new \Zyberspace\Telegram\Cli\Client('unix:///tmp/tg.sck');
+$telegram = new \Zyberspace\Telegram\Cli\Client('unix:///tmp/tg.sck');
 
 if(!is_dir(CAPTURES_PATH)) die('Not a valid dir: '.CAPTURES_PATH."\r\n");
 
