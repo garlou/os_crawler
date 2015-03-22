@@ -13,6 +13,9 @@
 require('vendor/autoload.php');
 
 define('TELEGRAM_PATH', '/home/kae/Documents/workspace/tg/');
+define('TELEGRAM_PEER', 'Surf');
+//define('CAPTURES_PATH', '/home/kae/Documents/workspace/os_crawler/captures');
+define('CAPTURES_PATH', '/Users/kae/Documents/workspace/php/captures');
 
 $first=true;
 while(!file_exists('/tmp/tg.sck')) {
@@ -20,14 +23,31 @@ while(!file_exists('/tmp/tg.sck')) {
 	if(!$first)
 	{
 		echo "Cannot create /tmp/tg.sck. Quitting...\r\n";
-		die();
+		//die();
 	}
 	exec(TELEGRAM_PATH.'bin/telegram-cli -dWS /tmp/tg.sck &');
 	$first=false;
 	sleep(2);
+	break;	
 }
 
 $telegram = new \Zyberspace\Telegram\Cli\Client('unix:///tmp/tg.sck');
+
+if(!is_dir(CAPTURES_PATH)) die('Not a valid dir: '.CAPTURES_PATH."\r\n");
+
+foreach (new DirectoryIterator(CAPTURES_PATH) as $fileInfo) {
+    if($fileInfo->isDot()) continue;
+    echo $fileInfo->getFilename() . "\n";
+    $filename = $fileInfo->getFilename();
+    $tokens = $filename.split("_");
+
+    $city = str_replace("-", " ", $tokens[1]);
+    echo "processing: ".$city;
+		$telegram->msg(TELEGRAM_PEER, $city.":");
+		$telegram->send_photo(TELEGRAM_PEER, CAPTURES_PATH.$filename);
+}
+
+die();
 
 //$contactList = $telegram->getContactList();
 $telegram->msg('Surf', 'Costa da Caparica:');
