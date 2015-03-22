@@ -26,7 +26,6 @@ casper.on("page.error", function(msg, trace) {
     
 
 for(var i in links) {
-    this.echo("Page Error: " + msg, "ERROR");
 
     casper.start(links[i].link, function() {
         this.echo(this.getTitle());
