@@ -11,6 +11,22 @@
  * The TelegramClient can be used without Drupal too.
  */
 require('vendor/autoload.php');
+
+define('TELEGRAM_PATH', '/home/kae/Documents/workspace/tg/');
+
+$first=true;
+while(!file_exists('/tmp/tg.sck')) {
+		
+	if(!$first)
+	{
+		echo "Cannot create /tmp/tg.sck. Quitting...\r\n";
+		die();
+	}
+	exec(TELEGRAM_PATH.'bin/telegram-cli -dWS /tmp/tg.sck &');
+	$first=false;
+	sleep(2);
+}
+
 $telegram = new \Zyberspace\Telegram\Cli\Client('unix:///tmp/tg.sck');
 
 //$contactList = $telegram->getContactList();

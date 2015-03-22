@@ -8,7 +8,11 @@ var casper = require('casper').create({
         }
     }),
     system = require('system'),
-    link = 'http://www.windguru.cz/pt/index.php?sc=48963';
+    link: 'http://www.windguru.cz/pt/index.php?sc=48963',
+    links = [{
+            name: 'Costa da Caparica',
+            link: 'http://www.windguru.cz/pt/index.php?sc=48963',
+        }];
 
 // print out all the messages in the headless browser context
 casper.on('remote.message', function(msg) {
@@ -19,16 +23,21 @@ casper.on('remote.message', function(msg) {
 casper.on("page.error", function(msg, trace) {
     this.echo("Page Error: " + msg, "ERROR");
 });
+    
+    this.echo("Page Error: " + links[0].name, "ERROR");
 
+for(var i in links) {
+    this.echo("Page Error: " + msg, "ERROR");
 
-casper.start(link, function() {
-    this.echo(this.getTitle());
-    this.capture('captures/windguru_' + Date.now() + '.png', {
-        top: 256,
-        left: 142,
-        width: 1024,
-        height: 300
+    casper.start(links[i].link, function() {
+        this.echo(this.getTitle());
+        this.capture('captures/windguru_'+ links[i].name +'_' + Date.now() + '.png', {
+            top: 256,
+            left: 142,
+            width: 1024,
+            height: 300
+        });
     });
-});
 
-casper.run();
+    casper.run();
+}
