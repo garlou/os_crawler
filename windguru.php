@@ -14,5 +14,8 @@ require('vendor/autoload.php');
 $telegram = new \Zyberspace\Telegram\Cli\Client('unix:///tmp/tg.sck');
 
 //$contactList = $telegram->getContactList();
-$telegram->send_photo('Opstop', '/home/kae/Pictures/windguru_1426993742355.png');
+$telegram->msg('Surf', 'Costa da Caparica:');
+$telegram->send_photo('Surf', '/home/kae/Pictures/windguru_1426993742355.png');
+
+
 
