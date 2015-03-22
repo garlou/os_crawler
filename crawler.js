@@ -25,12 +25,25 @@ casper.on("page.error", function(msg, trace) {
 casper.start(group_link, function() {
     this.echo(this.getTitle());
     system.stdout.writeLine('Insere a pass(30): (ctrl+D to end)');
-		var input = system.stdin.read(30);
-		system.stdout.writeLine(JSON.stringify(input));
+		var pass = system.stdin.read(30);
+		system.stdout.writeLine({ 
+        email: username, 
+        pass:  pass
+    });
     this.fill('form#login_form', { 
         email: username, 
-        pass:  password
+        pass:  pass
     }, true);
+});
+
+casper.then(function(){
+	this.echo(this.getTitle());
+	// once done we write the images URLs to screen.
+	// I'm still working on a proper way to download the images locally. Any idea?
+	this.each(images, function(self, fname) {
+		var url = "https://fbcdn-photos-a.akamaihd.net/hphotos-ak-ash4/s720x720/"+fname;
+		this.echo(url);
+	});
 });
 
 casper.run();
