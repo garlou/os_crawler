@@ -75,7 +75,10 @@ abstract class AbstractClientCommands
     {
         $peer = $this->escapePeer($peer);
         if(file_exists($photo_path))
-            return $this->exec('send_photo ' . $peer . ' ' . $photo_path);
+            {
+                echo "sends foto...."
+                return $this->exec('send_photo ' . $peer . ' ' . $photo_path);
+            }
         else
             return false;
     }
