@@ -6,9 +6,10 @@ body=$3
 tgpath=/home/kae/Documents/workspace/tg
 LOGFILE="/home/kae/tg.log"
 cd ${tgpath}
-${tgpath}/bin/telegram-cli -k ${tgpath}/server.pub <<EOF
-msg $to $subject\n
-safe_quit\n
+${tgpath}/bin/telegram-cli -k ${tgpath}/server.pub -W <<EOF
+msg $to $subject
+safe_quit
 EOF
+echo "command: ${tgpath}/bin/telegram-cli -k ${tgpath}/server.pub -W" >> ${LOGFILE}
 echo "$now Recipient=$to Message=$subject" >> ${LOGFILE}
 echo "Finished" >> ${LOGFILE}
