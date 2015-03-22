@@ -3,7 +3,7 @@ now=$(date)
 tgpath=$1
 LOGFILE="windguru.log"
 cd ${tgpath}
-#casperjs windguru.js
+casperjs windguru.js
 php windguru.php prod >> ${tgpath}/logs/${LOGFILE}
 #sleep 10
 #echo "safe_quit" | ${tgpath}/bin/telegram-cli -k ${tgpath}/server.pub
