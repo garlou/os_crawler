@@ -8,10 +8,10 @@ var casper = require('casper').create({
         }
     }),
     system = require('system'),
-    link: 'http://www.windguru.cz/pt/index.php?sc=48963',
+    link = 'http://www.windguru.cz/pt/index.php?sc=48963',
     links = [{
             name: 'Costa da Caparica',
-            link: 'http://www.windguru.cz/pt/index.php?sc=48963',
+            link: 'http://www.windguru.cz/pt/index.php?sc=48963'
         }];
 
 // print out all the messages in the headless browser context
