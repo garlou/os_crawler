@@ -13,5 +13,6 @@
 require('vendor/autoload.php');
 $telegram = new \Zyberspace\Telegram\Cli\Client('unix:///tmp/tg.sck');
 
-$contactList = $telegram->getContactList();
+//$contactList = $telegram->getContactList();
 $telegram->msg('Opstop', 'Hey man, what\'s up? :D');
+
