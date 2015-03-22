@@ -1,4 +1,5 @@
-!/bin/bash
+#!/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 now=$(date)
 to=$1
 subject=$2
