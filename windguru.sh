@@ -10,4 +10,4 @@ casperjs windguru.js && php windguru.php prod >> tgpath/${LOGFILE}
 #msg $to $subject
 #safe_quit
 #EOF
-echo "Finished" >> tgpath/${LOGFILE}
+echo "Finished" >> ${tgpath}/${LOGFILE}
