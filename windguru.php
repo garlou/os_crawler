@@ -34,20 +34,24 @@ while(!file_exists('/tmp/tg.sck')) {
 	break;	
 }
 
-$telegram = new \Zyberspace\Telegram\Cli\Client('unix:///tmp/tg.sck');
+//$telegram = new \Zyberspace\Telegram\Cli\Client('unix:///tmp/tg.sck');
 
 if(!is_dir(CAPTURES_PATH)) die('Not a valid dir: '.CAPTURES_PATH."\r\n");
 
 foreach (new DirectoryIterator(CAPTURES_PATH) as $fileInfo) {
     if($fileInfo->isDot()) continue;
-    echo $fileInfo->getFilename() . "\n";
+    //	echo $fileInfo->getFilename() . "\n";
     $filename = $fileInfo->getFilename();
     $tokens = explode("_", $filename);
 
-    $city = str_replace("-", " ", $tokens[1]);
-    echo "processing: ".$city;
-		$telegram->msg(TELEGRAM_PEER, $city.":");
-		$telegram->send_photo(TELEGRAM_PEER, CAPTURES_PATH.$filename);
+    if(count($tokens) == 3) 
+    {
+	    $city = str_replace("-", " ", $tokens[1]);
+	    echo "processing: ".$city."\r\n";
+			$telegram->msg(TELEGRAM_PEER, $city.":");
+			echo "sending photo: ".CAPTURES_PATH.'/'.$filename."\r\n";
+			$telegram->send_photo(TELEGRAM_PEER, CAPTURES_PATH.$filename);	
+    }
 }
 
 die();
