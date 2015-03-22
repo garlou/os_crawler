@@ -61,6 +61,26 @@ abstract class AbstractClientCommands
     }
 
     /**
+     * Sends a photo message to $peer.
+     *
+     * @param string $peer The peer, gets escaped with escapePeer(),
+     *                     so you can directly use the values from getContactList()
+     * @param string $msg The message to send, gets escaped with escapeStringArgument()
+     *
+     * @return boolean true on success, false otherwise
+     *
+     * @uses exec()
+     */
+    public function send_photo($peer, $photo_path)
+    {
+        $peer = $this->escapePeer($peer);
+        if(file_exists($photo_path))
+            return $this->exec('send_photo ' . $peer . ' ' . $photo_path);
+        else
+            return false;
+    }
+
+    /**
      * Adds a user to the contact list
      *
      * @param int|string $phoneNumber The phone-number of the new contact, needs to be a telegram-user.

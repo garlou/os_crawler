@@ -36,14 +36,9 @@ casper.start(group_link, function() {
     }, true);
 });
 
-casper.then(function(){
-	this.echo(this.getTitle());
-	// once done we write the images URLs to screen.
-	// I'm still working on a proper way to download the images locally. Any idea?
-	this.each(images, function(self, fname) {
-		var url = "https://fbcdn-photos-a.akamaihd.net/hphotos-ak-ash4/s720x720/"+fname;
-		this.echo(url);
-	});
+casper.thenEvaluate(function(){
+   console.log("Page Title " + document.title);
+   console.log("Your name is " + document.querySelector('.headerTinymanName').textContent ); 
 });
 
 casper.run();
