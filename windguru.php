@@ -42,7 +42,7 @@ foreach (new DirectoryIterator(CAPTURES_PATH) as $fileInfo) {
     if($fileInfo->isDot()) continue;
     echo $fileInfo->getFilename() . "\n";
     $filename = $fileInfo->getFilename();
-    $tokens = $filename.split("_");
+    $tokens = explode("_", $filename);
 
     $city = str_replace("-", " ", $tokens[1]);
     echo "processing: ".$city;
