@@ -50,7 +50,12 @@ foreach (new DirectoryIterator(CAPTURES_PATH) as $fileInfo) {
 	    echo "processing: ".$city."\r\n";
 			$telegram->msg(TELEGRAM_PEER, $city.":");
 			echo "sending photo: ".CAPTURES_PATH.$filename."\r\n";
-			$telegram->send_photo(TELEGRAM_PEER, CAPTURES_PATH.$filename);	
+			if ($telegram->send_photo(TELEGRAM_PEER, CAPTURES_PATH.$filename) !== false) //photo sent
+			{
+				//deletes foto
+				echo "delete file: ".CAPTURES_PATH.$filename."\r\n";
+				unlink(CAPTURES_PATH.$filename);
+			}
     }
 }
 
