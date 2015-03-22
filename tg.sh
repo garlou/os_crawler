@@ -6,7 +6,7 @@ body=$3
 tgpath=/home/kae/Documents/workspace/tg
 LOGFILE="/home/kae/tg.log"
 cd ${tgpath}
-${tgpath}/bin/telegram-cli -k ${tgpath}/server.pub -W <<EOF
+${tgpath}/bin/telegram-cli -k ${tgpath}/server.pub <<EOF
 msg $to $subject\n
 safe_quit\n
 EOF
