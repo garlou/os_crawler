@@ -24,7 +24,6 @@ casper.on("page.error", function(msg, trace) {
     this.echo("Page Error: " + msg, "ERROR");
 });
     
-    this.echo("Page Error: " + links[0].name, "ERROR");
 
 for(var i in links) {
     this.echo("Page Error: " + msg, "ERROR");
